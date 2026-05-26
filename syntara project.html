@@ -1,0 +1,324 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Syntara — Building Tomorrow's Technology Today</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.css" />
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body { font-family: Arial, sans-serif; color: #1a1a2e; background: #fff; }
+
+    .nav { background: #0a1628; padding: 16px 60px; display: flex; align-items: center; justify-content: space-between; position: sticky; top: 0; z-index: 100; box-shadow: 0 2px 20px rgba(0,0,0,0.3); }
+    .nav-logo { font-size: 22px; font-weight: 700; color: #fff; letter-spacing: 1px; }
+    .nav-logo span { color: #4a9eff; }
+    .nav-links { display: flex; gap: 32px; }
+    .nav-links a { color: #b0c4de; text-decoration: none; font-size: 14px; transition: color 0.2s; }
+    .nav-links a:hover { color: #4a9eff; }
+    .nav-btn { background: #1a6fc4; color: #fff; border: none; padding: 8px 20px; border-radius: 6px; font-size: 14px; cursor: pointer; }
+
+    .hero { background: linear-gradient(135deg, #0a1628 0%, #0d2444 50%, #0a1f3d 100%); padding: 100px 60px; text-align: center; min-height: 500px; display: flex; flex-direction: column; align-items: center; justify-content: center; }
+    .hero-badge { background: rgba(74,158,255,0.15); border: 1px solid rgba(74,158,255,0.3); color: #4a9eff; padding: 6px 16px; border-radius: 20px; font-size: 13px; margin-bottom: 24px; display: inline-block; animation: fadeDown 0.8s ease; }
+    .hero h1 { font-size: 48px; font-weight: 700; color: #fff; line-height: 1.2; margin-bottom: 20px; max-width: 700px; animation: fadeUp 0.8s ease 0.2s both; }
+    .hero h1 span { color: #4a9eff; }
+    .hero p { font-size: 18px; color: #8ba4c0; margin-bottom: 40px; max-width: 600px; line-height: 1.7; animation: fadeUp 0.8s ease 0.4s both; }
+    .hero-btns { display: flex; gap: 16px; justify-content: center; animation: fadeUp 0.8s ease 0.6s both; }
+    .btn-primary { background: #1a6fc4; color: #fff; border: none; padding: 14px 32px; border-radius: 8px; font-size: 15px; cursor: pointer; font-weight: 600; transition: all 0.2s; }
+    .btn-primary:hover { background: #1560b0; transform: translateY(-2px); }
+    .btn-outline { background: transparent; color: #4a9eff; border: 1px solid #4a9eff; padding: 14px 32px; border-radius: 8px; font-size: 15px; cursor: pointer; transition: all 0.2s; }
+    .btn-outline:hover { background: #4a9eff; color: #fff; transform: translateY(-2px); }
+
+    @keyframes fadeUp { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
+    @keyframes fadeDown { from { opacity: 0; transform: translateY(-20px); } to { opacity: 1; transform: translateY(0); } }
+
+    .stats { background: #f8faff; padding: 60px; display: grid; grid-template-columns: repeat(4, 1fr); gap: 24px; text-align: center; }
+    .stat-num { font-size: 36px; font-weight: 700; color: #1a6fc4; }
+    .stat-label { font-size: 14px; color: #666; margin-top: 4px; }
+
+    .services { background: #fff; padding: 80px 60px; }
+    .section-tag { font-size: 13px; color: #4a9eff; font-weight: 600; letter-spacing: 2px; text-transform: uppercase; margin-bottom: 12px; }
+    .section-title { font-size: 36px; font-weight: 700; color: #0a1628; margin-bottom: 16px; }
+    .section-sub { font-size: 16px; color: #666; max-width: 600px; line-height: 1.7; }
+    .services-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; margin-top: 48px; }
+    .service-card { background: #f8faff; border: 1px solid #e0eaf8; border-radius: 12px; padding: 32px; transition: transform 0.2s, box-shadow 0.2s; }
+    .service-card:hover { transform: translateY(-6px); box-shadow: 0 12px 30px rgba(74,158,255,0.15); }
+    .service-icon { width: 48px; height: 48px; background: #e8f1fd; border-radius: 10px; display: flex; align-items: center; justify-content: center; margin-bottom: 20px; font-size: 22px; }
+    .service-card h3 { font-size: 18px; font-weight: 600; color: #0a1628; margin-bottom: 10px; }
+    .service-card p { font-size: 14px; color: #666; line-height: 1.7; }
+
+    .about { background: #0a1628; padding: 80px 60px; display: grid; grid-template-columns: 1fr 1fr; gap: 60px; align-items: center; }
+    .about-text h2 { font-size: 36px; font-weight: 700; color: #fff; margin-bottom: 20px; }
+    .about-text p { font-size: 16px; color: #8ba4c0; line-height: 1.8; margin-bottom: 16px; }
+    .about-list { list-style: none; margin-top: 24px; }
+    .about-list li { color: #b0c4de; font-size: 15px; padding: 8px 0; border-bottom: 1px solid rgba(255,255,255,0.07); display: flex; align-items: center; gap: 10px; }
+    .about-list li::before { content: ""; width: 8px; height: 8px; background: #4a9eff; border-radius: 50%; flex-shrink: 0; }
+    .about-visual { background: rgba(74,158,255,0.05); border: 1px solid rgba(74,158,255,0.15); border-radius: 16px; padding: 40px; display: flex; flex-direction: column; gap: 16px; }
+    .about-stat { background: rgba(255,255,255,0.03); border: 1px solid rgba(255,255,255,0.08); border-radius: 10px; padding: 20px; display: flex; align-items: center; gap: 16px; }
+    .about-stat-num { font-size: 28px; font-weight: 700; color: #4a9eff; }
+    .about-stat-label { font-size: 13px; color: #8ba4c0; }
+
+    .team { background: #f8faff; padding: 80px 60px; }
+    .team-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; margin-top: 48px; }
+    .team-card { background: #fff; border: 1px solid #e0eaf8; border-radius: 12px; padding: 32px; text-align: center; transition: transform 0.2s, box-shadow 0.2s; }
+    .team-card:hover { transform: translateY(-4px); box-shadow: 0 8px 24px rgba(0,0,0,0.08); }
+    .team-avatar { width: 72px; height: 72px; border-radius: 50%; margin: 0 auto 16px; display: flex; align-items: center; justify-content: center; font-size: 24px; font-weight: 700; color: #fff; }
+    .team-card h3 { font-size: 16px; font-weight: 600; color: #0a1628; margin-bottom: 4px; }
+    .team-card .role { font-size: 13px; color: #4a9eff; margin-bottom: 12px; }
+    .team-card p { font-size: 13px; color: #666; line-height: 1.6; }
+
+    .contact { background: #fff; padding: 80px 60px; }
+    .contact-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 60px; margin-top: 48px; }
+    .contact-info h3 { font-size: 20px; font-weight: 600; color: #0a1628; margin-bottom: 16px; }
+    .contact-item { display: flex; align-items: center; gap: 12px; margin-bottom: 16px; font-size: 15px; color: #444; }
+    .contact-icon { width: 36px; height: 36px; background: #e8f1fd; border-radius: 8px; display: flex; align-items: center; justify-content: center; font-size: 16px; flex-shrink: 0; }
+    .contact-form { display: flex; flex-direction: column; gap: 14px; }
+    .contact-form input, .contact-form textarea { padding: 12px 16px; border: 1px solid #d0dff0; border-radius: 8px; font-size: 14px; outline: none; font-family: Arial, sans-serif; transition: border-color 0.2s; }
+    .contact-form input:focus, .contact-form textarea:focus { border-color: #4a9eff; }
+    .contact-form textarea { height: 120px; resize: none; }
+    .contact-form button { background: #1a6fc4; color: #fff; border: none; padding: 14px; border-radius: 8px; font-size: 15px; font-weight: 600; cursor: pointer; }
+    .contact-form button:hover { background: #1560b0; }
+
+    .footer { background: #0a1628; padding: 40px 60px; display: flex; align-items: center; justify-content: space-between; }
+    .footer-logo { font-size: 20px; font-weight: 700; color: #fff; }
+    .footer-logo span { color: #4a9eff; }
+    .footer p { color: #8ba4c0; font-size: 14px; }
+    .footer-links { display: flex; gap: 24px; }
+    .footer-links a { color: #8ba4c0; text-decoration: none; font-size: 13px; }
+    .footer-links a:hover { color: #4a9eff; }
+
+    /* CHATBOT */
+    .chat-fab { position: fixed; bottom: 28px; right: 28px; width: 56px; height: 56px; background: #1a6fc4; border-radius: 50%; display: flex; align-items: center; justify-content: center; cursor: pointer; box-shadow: 0 4px 20px rgba(26,111,196,0.4); z-index: 999; transition: transform 0.2s; border: none; font-size: 24px; }
+    .chat-fab:hover { transform: scale(1.1); }
+    .chat-window { position: fixed; bottom: 96px; right: 28px; width: 340px; height: 460px; background: #fff; border-radius: 16px; box-shadow: 0 8px 40px rgba(0,0,0,0.15); display: none; flex-direction: column; z-index: 998; overflow: hidden; border: 1px solid #e0eaf8; }
+    .chat-window.open { display: flex; }
+    .chat-header-bot { background: #0a1628; padding: 14px 16px; display: flex; align-items: center; gap: 10px; }
+    .bot-av { width: 32px; height: 32px; background: #1a6fc4; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 14px; font-weight: 700; color: #fff; }
+    .bot-name { font-size: 14px; font-weight: 600; color: #fff; }
+    .bot-status { font-size: 11px; color: #4a9eff; }
+    .chat-close { margin-left: auto; background: none; border: none; color: #8ba4c0; cursor: pointer; font-size: 18px; }
+    .chat-msgs { flex: 1; overflow-y: auto; padding: 14px; display: flex; flex-direction: column; gap: 10px; }
+    .chat-msg { max-width: 80%; padding: 8px 12px; border-radius: 12px; font-size: 13px; line-height: 1.5; }
+    .chat-msg.bot { background: #f0f4ff; color: #1a1a2e; align-self: flex-start; border-bottom-left-radius: 4px; }
+    .chat-msg.user { background: #1a6fc4; color: #fff; align-self: flex-end; border-bottom-right-radius: 4px; }
+    .chat-msg.loading { background: #f0f4ff; align-self: flex-start; color: #999; font-style: italic; }
+    .chat-input-row { padding: 10px 12px; border-top: 1px solid #eee; display: flex; gap: 8px; }
+    .chat-input-row input { flex: 1; padding: 8px 12px; border: 1px solid #d0dff0; border-radius: 20px; font-size: 13px; outline: none; }
+    .chat-input-row input:focus { border-color: #4a9eff; }
+    .chat-send { width: 32px; height: 32px; background: #1a6fc4; border: none; border-radius: 50%; color: #fff; cursor: pointer; display: flex; align-items: center; justify-content: center; flex-shrink: 0; }
+
+    @media (max-width: 768px) {
+      .nav { padding: 16px 20px; }
+      .nav-links { display: none; }
+      .hero { padding: 60px 20px; }
+      .hero h1 { font-size: 32px; }
+      .stats { padding: 40px 20px; grid-template-columns: repeat(2, 1fr); }
+      .services { padding: 60px 20px; }
+      .services-grid { grid-template-columns: 1fr; }
+      .about { padding: 60px 20px; grid-template-columns: 1fr; }
+      .team { padding: 60px 20px; }
+      .team-grid { grid-template-columns: 1fr; }
+      .contact { padding: 60px 20px; }
+      .contact-grid { grid-template-columns: 1fr; }
+      .footer { padding: 30px 20px; flex-direction: column; gap: 16px; text-align: center; }
+      .chat-window { width: 300px; right: 16px; }
+    }
+  </style>
+</head>
+<body>
+
+  <nav class="nav">
+    <div class="nav-logo">Syn<span>tara</span></div>
+    <div class="nav-links">
+      <a href="#home">Home</a>
+      <a href="#services">Services</a>
+      <a href="#about">About</a>
+      <a href="#team">Team</a>
+      <a href="#contact">Contact</a>
+    </div>
+    <button class="nav-btn">Get Started</button>
+  </nav>
+
+  <section class="hero" id="home">
+    <div class="hero-badge">Next Generation Technology Company</div>
+    <h1>Building <span>Tomorrow's</span> Technology Today</h1>
+    <p>Syntara delivers innovative software solutions that transform businesses and empower organizations to thrive in the digital era.</p>
+    <div class="hero-btns">
+      <button class="btn-primary" onclick="document.getElementById('services').scrollIntoView({behavior:'smooth'})">Our Services</button>
+      <button class="btn-outline" onclick="document.getElementById('about').scrollIntoView({behavior:'smooth'})">Learn More</button>
+    </div>
+  </section>
+
+  <div class="stats">
+    <div data-aos="fade-up" data-aos-delay="0"><div class="stat-num">150+</div><div class="stat-label">Projects Completed</div></div>
+    <div data-aos="fade-up" data-aos-delay="100"><div class="stat-num">50+</div><div class="stat-label">Happy Clients</div></div>
+    <div data-aos="fade-up" data-aos-delay="200"><div class="stat-num">5+</div><div class="stat-label">Years Experience</div></div>
+    <div data-aos="fade-up" data-aos-delay="300"><div class="stat-num">20+</div><div class="stat-label">Expert Team</div></div>
+  </div>
+
+  <section class="services" id="services">
+    <div data-aos="fade-up">
+      <div class="section-tag">What We Do</div>
+      <div class="section-title">Our Services</div>
+      <div class="section-sub">We provide comprehensive technology solutions tailored to your business needs.</div>
+    </div>
+    <div class="services-grid">
+      <div class="service-card" data-aos="fade-up" data-aos-delay="0"><div class="service-icon">💻</div><h3>Web Development</h3><p>Modern, responsive websites and web applications built with the latest technologies for optimal performance.</p></div>
+      <div class="service-card" data-aos="fade-up" data-aos-delay="100"><div class="service-icon">📱</div><h3>Mobile Apps</h3><p>Native and cross-platform mobile applications for iOS and Android that deliver exceptional user experiences.</p></div>
+      <div class="service-card" data-aos="fade-up" data-aos-delay="200"><div class="service-icon">🤖</div><h3>AI Solutions</h3><p>Intelligent automation and AI-powered tools that streamline operations and drive business growth.</p></div>
+      <div class="service-card" data-aos="fade-up" data-aos-delay="0"><div class="service-icon">☁️</div><h3>Cloud Services</h3><p>Scalable cloud infrastructure and DevOps solutions to keep your systems running efficiently.</p></div>
+      <div class="service-card" data-aos="fade-up" data-aos-delay="100"><div class="service-icon">🛡️</div><h3>Cybersecurity</h3><p>Comprehensive security assessments and solutions to protect your digital assets and data.</p></div>
+      <div class="service-card" data-aos="fade-up" data-aos-delay="200"><div class="service-icon">📊</div><h3>Data Analytics</h3><p>Transform raw data into actionable insights with our advanced analytics and visualization tools.</p></div>
+    </div>
+  </section>
+
+  <section class="about" id="about">
+    <div class="about-text" data-aos="fade-right">
+      <div class="section-tag" style="color:#4a9eff">About Us</div>
+      <h2>Who We Are</h2>
+      <p>Syntara is a leading technology company based in Indonesia, dedicated to delivering innovative digital solutions that help businesses succeed in an increasingly connected world.</p>
+      <p>Founded with a vision to bridge the gap between technology and business, we combine technical expertise with deep industry knowledge.</p>
+      <ul class="about-list">
+        <li>Expert team of developers and designers</li>
+        <li>Agile development methodology</li>
+        <li>24/7 technical support</li>
+        <li>Proven track record of success</li>
+      </ul>
+    </div>
+    <div class="about-visual" data-aos="fade-left">
+      <div class="about-stat"><div class="about-stat-num">98%</div><div class="about-stat-label">Client Satisfaction Rate</div></div>
+      <div class="about-stat"><div class="about-stat-num">150+</div><div class="about-stat-label">Projects Successfully Delivered</div></div>
+      <div class="about-stat"><div class="about-stat-num">5 yrs</div><div class="about-stat-label">Industry Experience</div></div>
+    </div>
+  </section>
+
+  <section class="team" id="team">
+    <div data-aos="fade-up">
+      <div class="section-tag">Our People</div>
+      <div class="section-title">Meet The Team</div>
+      <div class="section-sub">Our talented team of professionals brings diverse expertise to every project.</div>
+    </div>
+    <div class="team-grid">
+      <div class="team-card" data-aos="fade-up" data-aos-delay="0"><div class="team-avatar" style="background:#1a6fc4">AR</div><h3>Ahmad Rizky</h3><div class="role">CEO & Founder</div><p>Visionary leader with 10+ years in tech industry driving innovation and growth.</p></div>
+      <div class="team-card" data-aos="fade-up" data-aos-delay="100"><div class="team-avatar" style="background:#0d5c9e">SA</div><h3>Sari Anggraini</h3><div class="role">CTO</div><p>Technical expert specializing in cloud architecture and AI implementation.</p></div>
+      <div class="team-card" data-aos="fade-up" data-aos-delay="200"><div class="team-avatar" style="background:#1557a0">BN</div><h3>Budi Nugraha</h3><div class="role">Lead Developer</div><p>Full-stack developer passionate about building elegant and scalable solutions.</p></div>
+    </div>
+  </section>
+
+  <section class="contact" id="contact">
+    <div data-aos="fade-up">
+      <div class="section-tag">Get In Touch</div>
+      <div class="section-title">Contact Us</div>
+      <div class="section-sub">Ready to start your project? We'd love to hear from you.</div>
+    </div>
+    <div class="contact-grid">
+      <div class="contact-info" data-aos="fade-right">
+        <h3>Let's Talk</h3>
+        <div class="contact-item"><div class="contact-icon">📍</div>Bandung, Indonesia</div>
+        <div class="contact-item"><div class="contact-icon">📧</div>hello@syntara.id</div>
+        <div class="contact-item"><div class="contact-icon">📞</div>+62 21 1234 5678</div>
+        <div class="contact-item"><div class="contact-icon">🕐</div>Mon–Fri, 09.00–18.00 WIB</div>
+      </div>
+      <div class="contact-form" data-aos="fade-left">
+        <input type="text" placeholder="Your Name" />
+        <input type="email" placeholder="Email Address" />
+        <input type="text" placeholder="Subject" />
+        <textarea placeholder="Your Message"></textarea>
+        <button onclick="alert('Message sent! We will contact you soon. 😊')">Send Message</button>
+      </div>
+    </div>
+  </section>
+
+  <footer class="footer">
+    <div class="footer-logo">Syn<span>tara</span></div>
+    <p>© 2025 Syntara. All rights reserved.</p>
+    <div class="footer-links">
+      <a href="#">Privacy</a>
+      <a href="#">Terms</a>
+      <a href="#">Support</a>
+    </div>
+  </footer>
+
+  <!-- CHATBOT -->
+  <button class="chat-fab" onclick="toggleChat()">💬</button>
+  <div class="chat-window" id="chatWindow">
+    <div class="chat-header-bot">
+      <div class="bot-av">S</div>
+      <div>
+        <div class="bot-name">Syntara Assistant</div>
+        <div class="bot-status">● Online</div>
+      </div>
+      <button class="chat-close" onclick="toggleChat()">✕</button>
+    </div>
+    <div class="chat-msgs" id="chatMsgs">
+      <div class="chat-msg bot">Hi! I'm Syntara's AI Assistant. How can I help you today? 👋</div>
+    </div>
+    <div class="chat-input-row">
+      <input type="text" id="chatInput" placeholder="Type a message..." />
+      <button class="chat-send" onclick="sendChat()">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="22" y1="2" x2="11" y2="13"/><polygon points="22 2 15 22 11 13 2 9 22 2"/></svg>
+      </button>
+    </div>
+  </div>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.js"></script> 
+  <script const SYSTEM_PROMPT = `Kamu adalah syntara></script>
+  <script>
+    AOS.init({ duration: 700, once: true, offset: 80 });
+
+    function toggleChat() {
+      document.getElementById('chatWindow').classList.toggle('open');
+    }
+
+    document.getElementById('chatInput').addEventListener('keypress', function(e) {
+      if (e.key === 'Enter') sendChat();
+    });
+
+    async function sendChat() {
+      const input = document.getElementById('chatInput');
+      const msgs = document.getElementById('chatMsgs');
+      const text = input.value.trim();
+      if (!text) return;
+
+      const userMsg = document.createElement('div');
+      userMsg.className = 'chat-msg user';
+      userMsg.textContent = text;
+      msgs.appendChild(userMsg);
+      input.value = '';
+
+      const loading = document.createElement('div');
+      loading.className = 'chat-msg loading';
+      loading.textContent = 'Typing...';
+      loading.id = 'chatLoading';
+      msgs.appendChild(loading);
+      msgs.scrollTop = msgs.scrollHeight;
+
+      try {
+        const res = await fetch('/api/chat', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({
+            messages: [
+              { role: 'system', content: 'You are a helpful assistant for Syntara, a technology company in Indonesia that offers web development, mobile apps, AI solutions, cloud services, cybersecurity, and data analytics. Be friendly, professional, and concise. Answer in the same language the user uses.' },
+              { role: 'user', content: text }
+            ]
+          })
+        });
+        const data = await res.json();
+        document.getElementById('chatLoading').remove();
+        const botMsg = document.createElement('div');
+        botMsg.className = 'chat-msg bot';
+        botMsg.textContent = data.choices[0].message.content;
+        msgs.appendChild(botMsg);
+      } catch (err) {
+        document.getElementById('chatLoading').remove();
+        const errMsg = document.createElement('div');
+        errMsg.className = 'chat-msg bot';
+        errMsg.textContent = 'Sorry, something went wrong. Please try again.';
+        msgs.appendChild(errMsg);
+      }
+      msgs.scrollTop = msgs.scrollHeight;
+    }
+  </script>
+</body>
+</html>
